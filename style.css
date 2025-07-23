@@ -1,42 +1,145 @@
+/* Reset */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f3bbbb;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background: #f2daf0;
 }
 
-.container {
-  max-width: 500px;
-  margin: 40px auto;
-  background: #afd6ea;
-  padding: 30px;
-  border-radius: 10px;
-}
-
-.balance, .summary {
-  text-align: center;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#transaction-list {
-  list-style: none;
-  padding: 0;
-}
-
-.transaction {
-  background: #eee;
-  margin: 8px 0;
-  padding: 10px;
+/* ✅ NAVBAR */
+.navbar {
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
-  border-left: 5px solid green;
+  align-items: center;
 }
 
-.transaction.expense {
-  border-color: red;
+.navbar .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ CONTAINER */
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: rgb(216, 226, 240);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ✅ INSTRUCTIONS */
+.instructions {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff9e6;
+  padding: 1.5rem;
+  border-left: 5px solid #ffc107;
+  border-radius: 8px;
+}
+
+.instructions h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.instructions ol {
+  padding-left: 1.5rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+}
+
+/* Input group with select */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.input-group input,
+.input-group select {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .container, .instructions {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+}
+/* ✅ Add Transaction Button Styling */
+.add-btn {
+  background-color: #007bff;       /* Blue color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #0056b3;       /* Darker blue on hover */
+}
+/* ✅ Reset Button Styling */
+.reset-btn {
+  background-color: #dc3545;   /* Red */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.reset-btn:hover {
+  background-color: #a71d2a;
 }
