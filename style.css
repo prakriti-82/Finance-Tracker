@@ -154,6 +154,53 @@ body {
     max-height: 250px;
   }
 }
+/* Container for the buttons */
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Button styles (already applied, just for reference) */
+.add-btn,
+.reset-btn {
+  flex: 1;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.add-btn {
+  background-color: #28a745; /* green */
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+.reset-btn {
+  background-color: #dc3545; /* red */
+}
+
+.reset-btn:hover {
+  background-color: #c82333;
+}
+
+/* ✅ Responsive layout */
+@media (max-width: 600px) {
+  .button-group {
+    flex-direction: column;
+  }
+
+  .add-btn,
+  .reset-btn {
+    width: 100%;
+  }
+}
 
 
 
