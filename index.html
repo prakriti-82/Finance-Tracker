@@ -30,13 +30,18 @@
 
     <form id="transaction-form">
   <div class="input-group">
-    <input type="text" id="text" placeholder="Enter description" required />
-    <input type="number" id="amount" placeholder="Amount" required />
-    <select id="currency">
-      <option value="INR">₹ INR</option>
-      <option value="USD">$ USD</option>
-    </select>
-  </div>
+  <input type="text" id="text" placeholder="Enter description" required />
+  <input type="number" id="amount" placeholder="Amount" required />
+  <select id="currency">
+    <option value="INR">₹ INR</option>
+    <option value="USD">$ USD</option>
+  </select>
+  <select id="type">
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select>
+</div>
+
   <button type="submit" class="add-btn">Add Transaction</button>
     <button type="button" onclick="resetTransactions()" class="reset-btn">Reset</button>
 </form>
@@ -48,18 +53,20 @@
 
   <!-- ✅ INSTRUCTIONS SECTION -->
   <section class="instructions" id="instructions">
-    <h2>How to Use the Finance Tracker</h2>
-    <ol>
-      <li>Enter a short description of your transaction (e.g., "Salary" or "Groceries").</li>
-      <li>Enter the amount in <strong>Indian Rupees</strong>. Use <code>+</code> for income and <code>-</code> for expenses.</li>
-      <li>Click <strong>"Add Transaction"</strong> to save it. It will appear in the history list below.</li>
-      <li>Your balance, total income, and total expenses will automatically update.</li>
-      <li>A pie chart gives you a visual summary of your finances.</li>
-      <li>To remove an entry, click the ❌ button next to it.</li>
-      <li>All your data is saved in your browser, even if you refresh the page!</li>
-    </ol>
-  </section>
-
+  <h2>How to Use the Finance Tracker</h2>
+  <ol>
+    <li>Enter a short description of your transaction (e.g., "Salary" or "Groceries").</li>
+    <li>Enter the amount in <strong>Indian Rupees</strong>.</li>
+    <li>Select the transaction type: <strong>Income</strong> or <strong>Expense</strong>.</li>
+    <li>Choose the currency type (₹ INR or $ USD) that you're entering the amount in.</li>
+    <li>Click <strong>"Add Transaction"</strong> to save it. It will appear in the history list below.</li>
+    <li>Your balance, total income, and total expenses will automatically update.</li>
+    <li>A pie chart gives you a visual summary of your finances.</li>
+    <li>To remove an entry, click the ❌ button next to it.</li>
+    <li>You can also click the <strong>"Reset"</strong> button to clear all transactions.</li>
+    <li>All your data is saved in your browser, even if you refresh the page!</li>
+  </ol>
+</section>
   <script src="app.js"></script>
 </body>
 </html>

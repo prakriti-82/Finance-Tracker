@@ -18,7 +18,13 @@ function addTransaction(e) {
   if (text.value.trim() === '' || amount.value.trim() === '') return;
 
   const currency = document.getElementById('currency').value;
-  const inputAmount = +amount.value;
+  const type = document.getElementById('type').value;
+  let inputAmount = +amount.value;
+
+  // Apply negative sign if it's an expense
+  if (type === 'expense') {
+    inputAmount *= -1;
+  }
 
   let rupeeAmount, dollarAmount;
 
@@ -44,7 +50,6 @@ function addTransaction(e) {
   text.value = '';
   amount.value = '';
 }
-
 
 // Remove a transaction
 function removeTransaction(id) {

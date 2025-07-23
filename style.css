@@ -143,3 +143,27 @@ body {
 .reset-btn:hover {
   background-color: #a71d2a;
 }
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.input-group input,
+.input-group select {
+  flex: 1 1 150px;
+  padding: 8px;
+  font-size: 1rem;
+  min-width: 0;
+}
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group input,
+  .input-group select {
+    width: 100%;
+  }
+}
