@@ -67,8 +67,6 @@ function addToList(transaction) {
 function updateLocalStorage() {
   localStorage.setItem('transactions', JSON.stringify(transactions));
 }
-
-updateUI();
 const chartCtx = document.getElementById('chart').getContext('2d');
 
 function updateChart(income, expense) {
@@ -83,4 +81,5 @@ function updateChart(income, expense) {
     },
     options: { responsive: true }
   });
+  updateUI();
 }
