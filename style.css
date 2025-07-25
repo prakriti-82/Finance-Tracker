@@ -57,6 +57,16 @@
   display: none;
 }
 /* Base Styles */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body.welcome-active {
+  overflow: hidden; /* Prevent scroll while welcome is shown */
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;

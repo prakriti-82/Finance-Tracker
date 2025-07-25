@@ -91,7 +91,6 @@
     </ol>
   </section>
 
-  
   <script>
   function startApp() {
     const welcome = document.getElementById("welcome-page");
@@ -122,6 +121,37 @@
     type();
   };
 </script>
-  <script src="app.js"></script>
+<script>function startApp() {
+  const welcome = document.getElementById("welcome-page");
+  welcome.classList.add("fade-out");
+
+  setTimeout(() => {
+    welcome.style.display = "none";
+    document.body.classList.remove("welcome-active"); // ✅ allow scroll again
+    document.querySelector(".navbar").classList.remove("hidden");
+    document.getElementById("tracker").classList.remove("hidden");
+    document.getElementById("instructions").classList.remove("hidden");
+  }, 800);
+}
+
+// Initially lock scrolling
+window.onload = () => {
+  document.body.classList.add("welcome-active"); // ✅ prevent scroll on welcome
+  const text = "Track your income & expenses smartly!";
+  const target = document.getElementById("typed-text");
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      target.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, 50);
+    }
+  }
+
+  type();
+};
+</script>
+<script src="app.js"></script>
 </body>
 </html>
