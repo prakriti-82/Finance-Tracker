@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finance Tracker</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+  <!-- ✅ Welcome Page -->
+<section id="welcome-page" class="welcome-container">
+  <div class="welcome-card">
+    <h1 class="fade-in">💸 Welcome to Your Finance Tracker</h1>
+    <p id="typed-text" class="typed-text"></p>
+    <button onclick="startApp()" class="pulse-btn">Get Started</button>
+  </div>
+</section>
+
+
   <!-- ✅ NAVIGATION BAR -->
-  <nav class="navbar">
+  <nav class="navbar hidden">
     <div class="logo">💰 Finance Tracker</div>
     <ul class="nav-links">
       <li><a href="#tracker">Tracker</a></li>
@@ -17,7 +27,8 @@
     </ul>
   </nav>
 
-  <div class="container" id="tracker">
+  <div class="container hidden" id="tracker">
+    <!-- ✅ Existing Content -->
     <h1>Personal Finance Tracker</h1>
 
     <div class="balance">
@@ -29,48 +40,88 @@
     </div>
 
     <form id="transaction-form">
-  <div class="input-group">
-  <input type="text" id="text" placeholder="Enter description" required />
-  <input type="number" id="amount" placeholder="Amount" required />
-  <select id="currency">
-    <option value="INR">₹ INR</option>
-    <option value="USD">$ USD</option>
-  </select>
-  <select id="type">
-    <option value="income">Income</option>
-    <option value="expense">Expense</option>
-  </select>
-</div>
+      <div class="input-group">
+        <input type="text" id="text" placeholder="Enter description" required />
+        <input type="number" id="amount" placeholder="Amount" required />
+        <select id="currency">
+          <option value="INR">₹ INR</option>
+          <option value="USD">$ USD</option>
+        </select>
+        <select id="type">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+      </div>
 
-  <div class="button-group">
-  <button type="submit" class="add-btn">Add Transaction</button>
-  <button type="button" onclick="resetTransactions()" class="reset-btn">Reset</button>
-</div>
+      <div class="button-group">
+        <button type="submit" class="add-btn">Add Transaction</button>
+        <button type="button" onclick="resetTransactions()" class="reset-btn">Reset</button>
+      </div>
+    </form>
 
-</form>
     <h3>History</h3>
     <ul id="transaction-list"></ul>
-    <canvas id="chart" width="400" height="400"></canvas>
+
+    <div class="progress-bars">
+      <div class="bar-label">Income</div>
+      <div class="bar-container">
+        <div class="bar-fill income-bar" style="width: 0%"></div>
+      </div>
+
+      <div class="bar-label">Expenses</div>
+      <div class="bar-container">
+        <div class="bar-fill expense-bar" style="width: 0%"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ✅ INSTRUCTIONS SECTION -->
-  <section class="instructions" id="instructions">
-  <h2>How to Use the Finance Tracker</h2>
-  <ol>
-    <li>Enter a short description of your transaction (e.g., "Salary" or "Groceries").</li>
-    <li>Enter the amount in <strong>Indian Rupees</strong>.</li>
-    <li>Select the transaction type: <strong>Income</strong> or <strong>Expense</strong>.</li>
-    <li>Choose the currency type (₹ INR or $ USD) that you're entering the amount in.</li>
-    <li>Click <strong>"Add Transaction"</strong> to save it. It will appear in the history list below.</li>
-    <li>Your balance, total income, and total expenses will automatically update.</li>
-    <li>A pie chart gives you a visual summary of your finances.</li>
-    <li>To remove an entry, click the ❌ button next to it.</li>
-    <li>You can also click the <strong>"Reset"</strong> button to clear all transactions.</li>
-    <li>All your data is saved in your browser, even if you refresh the page!</li>
-  </ol>
-</section>
+  <section class="instructions hidden" id="instructions">
+    <h2>How to Use the Finance Tracker</h2>
+    <ol>
+      <li>Enter a short description of your transaction (e.g., "Salary" or "Groceries").</li>
+      <li>Enter the amount in <strong>Indian Rupees</strong> or <strong>USD</strong>.</li>
+      <li>Select the transaction type: <strong>Income</strong> or <strong>Expense</strong>.</li>
+      <li>Choose the currency type (₹ INR or $ USD).</li>
+      <li>Click <strong>"Add Transaction"</strong> to save it. It will appear in the history list below.</li>
+      <li>Your balance, total income, and total expenses will automatically update.</li>
+      <li>To remove an entry, click the ❌ button next to it.</li>
+      <li>You can also click the <strong>"Reset"</strong> button to clear all transactions.</li>
+      <li>All your data is saved in your browser, even if you refresh the page!</li>
+    </ol>
+  </section>
+
+  
+  <script>
+  function startApp() {
+    const welcome = document.getElementById("welcome-page");
+    welcome.classList.add("fade-out");
+
+    setTimeout(() => {
+      welcome.style.display = "none";
+      document.querySelector(".navbar").classList.remove("hidden");
+      document.getElementById("tracker").classList.remove("hidden");
+      document.getElementById("instructions").classList.remove("hidden");
+    }, 800);
+  }
+
+  // ✅ Typing animation text
+  window.onload = () => {
+    const text = "Track your income & expenses smartly!";
+    const target = document.getElementById("typed-text");
+    let i = 0;
+
+    function type() {
+      if (i < text.length) {
+        target.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 50);
+      }
+    }
+
+    type();
+  };
+</script>
   <script src="app.js"></script>
 </body>
 </html>
-
-

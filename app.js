@@ -8,10 +8,11 @@ const list = document.getElementById('transaction-list');
 const balanceEl = document.getElementById('balance');
 const incomeEl = document.getElementById('income');
 const expenseEl = document.getElementById('expense');
+const incomeBar = document.querySelector('.income-bar');
+const expenseBar = document.querySelector('.expense-bar');
 
 form.addEventListener('submit', addTransaction);
 
-// Add a transaction
 function addTransaction(e) {
   e.preventDefault();
 
@@ -21,10 +22,7 @@ function addTransaction(e) {
   const type = document.getElementById('type').value;
   let inputAmount = +amount.value;
 
-  // Apply negative sign if it's an expense
-  if (type === 'expense') {
-    inputAmount *= -1;
-  }
+  if (type === 'expense') inputAmount *= -1;
 
   let rupeeAmount, dollarAmount;
 
@@ -51,14 +49,12 @@ function addTransaction(e) {
   amount.value = '';
 }
 
-// Remove a transaction
 function removeTransaction(id) {
   transactions = transactions.filter(t => t.id !== id);
   updateLocalStorage();
   updateUI();
 }
 
-// Add transaction to list
 function addToList(transaction) {
   const sign = transaction.rupeeAmount < 0 ? '-' : '+';
   const li = document.createElement('li');
@@ -73,7 +69,6 @@ function addToList(transaction) {
   list.appendChild(li);
 }
 
-// Update UI
 function updateUI() {
   list.innerHTML = '';
   transactions.forEach(addToList);
@@ -81,10 +76,7 @@ function updateUI() {
   const rupeeAmounts = transactions.map(t => t.rupeeAmount);
 
   const total = rupeeAmounts.reduce((acc, val) => acc + val, 0).toFixed(2);
-  const income = rupeeAmounts
-    .filter(val => val > 0)
-    .reduce((acc, val) => acc + val, 0)
-    .toFixed(2);
+  const income = rupeeAmounts.filter(val => val > 0).reduce((acc, val) => acc + val, 0).toFixed(2);
   const expense = (
     rupeeAmounts.filter(val => val < 0).reduce((acc, val) => acc + val, 0) * -1
   ).toFixed(2);
@@ -93,41 +85,22 @@ function updateUI() {
   incomeEl.innerText = `₹${income} / $${(income / conversionRate).toFixed(2)}`;
   expenseEl.innerText = `₹${expense} / $${(expense / conversionRate).toFixed(2)}`;
 
-  updateChart(income, expense);
+  updateBars(income, expense);
 }
 
-// Save to localStorage
+function updateBars(income, expense) {
+  const total = parseFloat(income) + parseFloat(expense);
+  const incomePercent = total ? (parseFloat(income) / total) * 100 : 0;
+  const expensePercent = total ? (parseFloat(expense) / total) * 100 : 0;
+
+  incomeBar.style.width = `${incomePercent}%`;
+  expenseBar.style.width = `${expensePercent}%`;
+}
+
 function updateLocalStorage() {
   localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
-// Chart.js
-const chartCtx = document.getElementById('chart').getContext('2d');
-let pieChart;
-
-function updateChart(income, expense) {
-  if (pieChart) pieChart.destroy();
-
-  pieChart = new Chart(chartCtx, {
-    type: 'pie',
-    data: {
-      labels: ['Income', 'Expenses'],
-      datasets: [{
-        data: [income, expense],
-        backgroundColor: ['#28a745', '#dc3545']
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom',
-        }
-      }
-    }
-  });
-}
-// ✅ Reset all transactions
 function resetTransactions() {
   if (confirm("Are you sure you want to reset all transactions?")) {
     transactions = [];
@@ -136,6 +109,7 @@ function resetTransactions() {
   }
 }
 
-// Initial render
 updateUI();
+
+
 
